@@ -1,0 +1,44 @@
+{
+  "name": "node-web-quickstart",
+  "version": "1.0.0",
+  "description": "quick start application for an web application - with typescript + webpack + express + react",
+  "author": "Wen Liu <wenliu2@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "client:build": "webpack --config ./web/webpack.config.js",
+    "server:build": "tsc -p ./server/tsconfig-server.json",
+    "server:clean": "rimraf server-dist",
+    "server:build:release": "npm run server:clean && tsc -p ./server/tsconfig-server-release.json",
+    "server:start": "NODE_ENV=prod node server-dist/server/src/main.js",
+    "server:dev": "NODE_ENV=development tsc-watch --noClear -p ./server/tsconfig-server.json --onSuccess \"node ./server-dist/server/src/main.js\"",
+    "db_init": "npm run server:build && NODE_ENV=development node ./server-dist/server/src/db_init.js"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.35",
+    "rimraf": "^3.0.2",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.6.4",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">= 16.13 <17"
+  },
+  "dependencies": {
+    "@seald-io/nedb": "^3.0.0",
+    "@yetzt/linvodb": "^3.25.5",
+    "acebase": "^1.19.1",
+    "bluebird": "^3.7.2",
+    "dotenv": "^16.0.1",
+    "dotenv-expand": "^8.0.3",
+    "express": "^4.18.1",
+    "leveldown": "^6.1.1",
+    "tslib": "^2.4.0"
+  },
+  "volta": {
+    "node": "16.13.0"
+  }
+}
