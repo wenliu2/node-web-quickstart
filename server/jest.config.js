@@ -5,7 +5,8 @@ export default {
     globals: {
       'ts-jest': {
         useESM: true,
-        tsconfig: '<rootDir>/tsconfig-server.json'
+        tsconfig: '<rootDir>/tsconfig-server.json',
+        
       },
     },
     //moduleDirectories: ["node_modules"],
