@@ -2,8 +2,9 @@ import express, { Express, Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand'
 //import { init as init_db, get_db } from "./db/index.js"
-import test from "./controller/test.js"
+import test from "./controller/test1.js"
 import { useDB, TRACKING_DB } from "./db/index.js"
+import { apidocs } from "./apidocs.js"
 
 let myenv = dotenv.config({ path: `./server/env/.env.${process.env.NODE_ENV}` });
 dotenvExpand.expand(myenv)
@@ -20,6 +21,9 @@ const start = (async () => {
     await tracking_db.loadDatabaseAsync()
 
     app.use(test.path, test.router)
+    app.use('/static', express.static('./client-dist'))
+    app.use('/static/*', express.static('./client-dist/index.html'))
+    app.use(apidocs.path, apidocs.swaggerUI.serve, apidocs.swaggerUI.setup(apidocs.specs))
     app.use((err: any, req: Request, res: Response, next: NextFunction) => {
         console.log(err)
         res.status(err.status || 500)

@@ -3,12 +3,14 @@
         "target": "ES2020",
         "module": "ES2020",
         "lib": [
-            "ES2020"
+            "ES2020",
+            "dom",
+            "dom.iterable"
         ],
         "esModuleInterop": true,
         "moduleResolution": "node",
         "rootDir": "../",
-        "outDir": "../server-dist",
+        "outDir": "../client-dist",
         "allowSyntheticDefaultImports": true,
         "importHelpers": true,
         "alwaysStrict": true,
@@ -21,11 +23,12 @@
         "noImplicitAny": false,
         "noImplicitThis": false,
         "strictNullChecks": false,
+        "jsx": "react-jsx",
         //"declaration": true
     },
     "include": [
         "./src/**/*",
         "./__tests__/**/*",
         "../common/**/*"
-    ]
+, "webpack.development.cjs"    ]
 }
