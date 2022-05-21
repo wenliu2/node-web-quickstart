@@ -26,13 +26,14 @@ const start = async () => {
     console.log(`result: ${JSON.stringify(result)}`)
 
     //const updateResult = await db.updateAsync({"name": "里斯"}, {$set: {"contracts.0.price": 888}})
+    //找到name="里斯"的记录，对contracts数组进行操作，删除id="004"的元素，然后加入两条新的元素，整个操作在一个处理中完成.
     const updateResult = await db.updateAsync(
         { "name": "里斯" },
 
         {
             $pull: { contracts: { id: "004" } },
             $push: { contracts: 
-                {$each: [{ id: "004", price: 1234 },{id: "004", price: 432} ]} },
+                {$each: [{ id: "004", price: 1234 },{id: "005", price: 432} ]} },
         },
     )
     console.log(`updateResult: ${JSON.stringify(updateResult)}`)
